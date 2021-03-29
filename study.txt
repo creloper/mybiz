@@ -1,2 +1,3 @@
 self study git
 remote modify...
+local string edit
