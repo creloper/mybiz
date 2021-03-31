@@ -2,3 +2,18 @@ daily report
 [03/31]
 - [유튜브] SQL튜닝 #1, #2(ing)
 - 대용량 데이터베이스 : 인메모리 해시조인, 
+
+- Bash Shell : insert 오류 체크하여 메일로 전송
+--------------------------------------------------------------
+#!/bin/sh
+
+YY=`date +%Y`
+MM=`date +%m`
+DD=`date +%d`
+RANGESRC="/home/kbid/cronLog/$YY/$MM/$DD"
+echo $RANGESRC
+grep -r 'Data too long' $RANGESRC > insert_err
+grep -r 'MySQL server has gone away' $RANGESRC >> insert_err
+mail -s "Daily Report" mspark@kbid.co.kr < insert_err
+rm -f $RANGESRC
+--------------------------------------------------------------
