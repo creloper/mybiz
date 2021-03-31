@@ -13,6 +13,7 @@ DD=`date +%d`
 RANGESRC="/home/kbid/cronLog/$YY/$MM/$DD"
 echo $RANGESRC
 grep -r 'Data too long' $RANGESRC > insert_err
+grep -r 'Unknown column' $RANGESRC >> insert_err
 grep -r 'MySQL server has gone away' $RANGESRC >> insert_err
 mail -s "Daily Report" mspark@kbid.co.kr < insert_err
 rm -f $RANGESRC
